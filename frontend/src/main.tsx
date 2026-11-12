@@ -126,8 +126,21 @@ function App() {
     void load();
     const onHash = () =>
       setPage(decodeURIComponent(location.hash.slice(1)) || "Overview");
+    const reconnect = () => {
+      void load();
+      const id = localStorage.getItem("codeproof-run");
+      if (decodeURIComponent(location.hash.slice(1)) === "Run Detail" && id) {
+        api<Run>("/runs/" + id)
+          .then(setSelected)
+          .catch((e) => setError(String(e)));
+      }
+    };
+    window.addEventListener("online", reconnect);
     window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    return () => {
+      window.removeEventListener("hashchange", onHash);
+      window.removeEventListener("online", reconnect);
+    };
   }, [load]);
   useEffect(() => {
     if (page !== "Run Detail" || !selectedId) return;
@@ -587,6 +600,7 @@ function App() {
                     <label className="search">
                       <Search size={17} />
                       <input
+                        aria-label="Search tasks or tags"
                         placeholder="Search tasks or tags"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}

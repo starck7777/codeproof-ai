@@ -6,10 +6,11 @@ import json
 import os
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
-work = Path("/tmp/work")
-work.mkdir(mode=0o755)
+work = Path(tempfile.mkdtemp(prefix="codeproof-work-"))
+work.chmod(0o755)
 shutil.copy("/candidate/solution.py", work / "solution.py")
 cases = json.loads(Path("/trusted/cases.json").read_text())
 # Each invocation gets an input, never an expected value. Keep one child for all
@@ -26,7 +27,7 @@ for args in json.loads(sys.stdin.read()):
 print(json.dumps(values))
 """
 # Bounded file output avoids unbounded capture_output memory growth.
-with open("/tmp/candidate-output", "w+b") as output:
+with tempfile.TemporaryFile() as output:
     process = subprocess.Popen(
         ["python", "-c", child],
         cwd=work,

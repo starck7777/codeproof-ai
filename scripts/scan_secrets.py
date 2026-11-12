@@ -3,6 +3,7 @@
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 from detect_secrets import SecretsCollection
@@ -50,11 +51,15 @@ with default_settings():
             content = subprocess.run(
                 ["git", "show", revision + ":" + name], capture_output=True, text=True, check=True
             ).stdout
-            from detect_secrets.core.scan import scan_line
-
-            for n, line in enumerate(content.splitlines(), 1):
-                if list(scan_line(line)):
-                    findings.append(f"history:{revision[:8]}:{name}:{n}")
+            # Whole-file scanning preserves entropy context and filename filters;
+            # adhoc scan_line uses eager search and flags ordinary source words.
+            with tempfile.TemporaryDirectory(prefix="codeproof-history-scan-") as temporary:
+                path = Path(temporary) / Path(name).name
+                path.write_text(content)
+                historical = SecretsCollection()
+                historical.scan_file(str(path))
+                if historical.json():
+                    findings.append(f"history:{revision[:8]}:{name}")
 if findings:
     print(json.dumps({"finding_locations": sorted(set(findings))}, indent=2))
     sys.exit(1)

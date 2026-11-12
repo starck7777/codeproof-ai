@@ -9,6 +9,8 @@ import uuid
 from pathlib import Path
 
 IMAGE = "codeproof-task:1"
+# Container-private bounded tmpfs, never a shared host temporary path.
+CONTAINER_TMPFS = "/tmp:rw,noexec,nosuid,size=32m,mode=1777"  # nosec B108
 
 
 class Sandbox:
@@ -46,7 +48,7 @@ class Sandbox:
             "--ulimit",
             "fsize=131072:131072",
             "--tmpfs",
-            "/tmp:rw,noexec,nosuid,size=32m,mode=1777",
+            CONTAINER_TMPFS,
             "--mount",
             f"type=bind,src={Path(workspace).resolve()},dst=/candidate,readonly",
             "--mount",

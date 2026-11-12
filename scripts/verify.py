@@ -31,7 +31,7 @@ checks = [
         "Source security scan (medium+ gate; low findings reviewed in SECURITY.md)",
         [".venv/bin/bandit", "-r", "backend/app", "scripts", "-ll"],
     ),
-    ("Dependency scan Python", [".venv/bin/pip-audit", "-r", "requirements.lock", "--disable-pip"]),
+    ("Dependency scan Python", [".venv/bin/pip-audit", "-r", "requirements.lock"]),
     ("Dependency scan npm", ["npm", "audit", "--prefix", "frontend", "--audit-level=low"]),
     ("Secret and history scan", [".venv/bin/python", "scripts/scan_secrets.py"]),
     (
@@ -146,6 +146,10 @@ for (label, command), (_, status, output) in zip(checks, results):
         "",
     ]
 lines += [
+    "## Security findings and fixes",
+    "",
+    "Initial npm findings were resolved by upgrading Vite/PostCSS and overriding vulnerable minimatch. Unsafe fixed runner temporary names were replaced with OS-generated names. The one B108 annotation covers a container-private tmpfs mount; source scan low subprocess findings are reviewed in SECURITY.md, not evidence of zero risk. History is scanned as whole files to preserve scanner context; no existing history was rewritten. Live credential/spending checks were not bypassed.",
+    "",
     "## Limitations and skipped checks",
     "",
     "Live gateway calls: not run; no credentials and no authorized spending amount. No demo result substitutes for live integration.",
