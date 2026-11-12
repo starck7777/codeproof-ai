@@ -343,3 +343,7 @@ Deterministic Demo Replay run `6735f70c60eb4e7cb522fd725f67e457` executed on the
 | DirectPatch | Completed | True | 2 / 2 |
 | IterativeFix | Completed | False | 1 / 2 |
 | PlanVerify | Completed | True | 2 / 2 |
+
+## CI portability finding
+
+The initial GitHub Actions setup failed because `ubuntu-latest` selected Ubuntu 26.04, unsupported by the locked Playwright release. The workflow now pins supported Ubuntu 24.04. Application verification was not weakened; the corrected hosted run is checked separately.
