@@ -1,0 +1,24 @@
+{
+  "id": "utc-time",
+  "title": "UTC timestamps",
+  "difficulty": "hard",
+  "tags": [
+    "time"
+  ],
+  "description": "Return integer Unix seconds for ISO-8601 timestamps including Z and offsets. Naive timestamps are UTC, independent of host timezone.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

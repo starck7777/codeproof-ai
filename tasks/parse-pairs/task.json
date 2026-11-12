@@ -1,0 +1,24 @@
+{
+  "id": "parse-pairs",
+  "title": "Parse pairs",
+  "difficulty": "easy",
+  "tags": [
+    "parsing"
+  ],
+  "description": "Parse semicolon-separated key=value pairs, trim whitespace, preserve equals inside values, ignore blank segments; last duplicate key wins. Missing equals raises ValueError.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

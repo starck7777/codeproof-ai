@@ -1,0 +1,24 @@
+{
+  "id": "positive-quantity",
+  "title": "Validate quantity",
+  "difficulty": "easy",
+  "tags": [
+    "validation"
+  ],
+  "description": "Return quantity * price. Quantity must be a positive integer (bool is invalid); price must be nonnegative. Invalid input raises ValueError.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

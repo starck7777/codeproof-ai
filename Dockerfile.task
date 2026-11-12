@@ -1,0 +1,5 @@
+FROM python:3.12.8-slim
+COPY scripts/container_runner.py /runner.py
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/work
+USER 65534:65534
+ENTRYPOINT ["python", "/runner.py"]

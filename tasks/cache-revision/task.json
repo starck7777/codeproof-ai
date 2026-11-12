@@ -1,0 +1,24 @@
+{
+  "id": "cache-revision",
+  "title": "Revision cache",
+  "difficulty": "medium",
+  "tags": [
+    "cache"
+  ],
+  "description": "Process [key,value] updates and return latest values as dict. None deletes a key. Later updates replace earlier values.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

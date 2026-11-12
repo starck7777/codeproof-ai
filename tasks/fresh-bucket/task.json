@@ -1,0 +1,24 @@
+{
+  "id": "fresh-bucket",
+  "title": "Fresh collection",
+  "difficulty": "easy",
+  "tags": [
+    "mutable-state"
+  ],
+  "description": "Append item to a copy of the optional bucket. Never mutate the caller list. Calls without bucket are independent.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

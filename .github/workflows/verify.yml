@@ -1,0 +1,41 @@
+name: Verify CodeProof
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      redis:
+        image: redis:7.4.1-alpine
+        ports: [6379:6379]
+      postgres:
+        image: postgres:16.6-alpine
+        env:
+          POSTGRES_USER: codeproof
+          POSTGRES_PASSWORD: codeproof-local-demo # pragma: allowlist secret - disposable CI database
+          POSTGRES_DB: codeproof_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U codeproof" --health-interval 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: npm, cache-dependency-path: frontend/package-lock.json}
+      - run: make setup
+      - run: make task-image
+      - run: make verify
+        env:
+          TEST_POSTGRES_URL: postgresql+psycopg://codeproof:codeproof-local-demo@127.0.0.1/codeproof_test # pragma: allowlist secret - disposable CI database
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-evidence
+          path: |
+            FINAL_TEST_REPORT.md
+            .local/verification
+          include-hidden-files: true

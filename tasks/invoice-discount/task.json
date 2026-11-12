@@ -1,0 +1,24 @@
+{
+  "id": "invoice-discount",
+  "title": "Invoice calculation",
+  "difficulty": "hard",
+  "tags": [
+    "business-logic"
+  ],
+  "description": "Lines are [quantity, unit cents]. Sum nonnegative integer quantities and prices; reject bool and invalid values with ValueError. Apply integer discount percent 0..100 to subtotal and round down once.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

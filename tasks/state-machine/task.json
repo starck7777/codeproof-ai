@@ -1,0 +1,24 @@
+{
+  "id": "state-machine",
+  "title": "Order transitions",
+  "difficulty": "medium",
+  "tags": [
+    "state"
+  ],
+  "description": "Begin draft. Allowed: draft->paid->shipped->delivered; draft->cancelled or paid->cancelled. Same-state events are idempotent. Other transitions raise ValueError. Return final state.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}

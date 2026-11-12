@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16.6-alpine
+    environment:
+      POSTGRES_USER: codeproof
+      POSTGRES_PASSWORD: codeproof-local-demo # pragma: allowlist secret - public local-only demo password
+      POSTGRES_DB: codeproof
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["database:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codeproof"]
+      interval: 3s
+      retries: 20
+  redis:
+    image: redis:7.4.1-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["127.0.0.1:6379:6379"]
+    volumes: ["queue:/data"]
+  migrate:
+    build: {context: ., dockerfile: Dockerfile.backend}
+    environment: &environment
+      DATABASE_URL: postgresql+psycopg://codeproof:codeproof-local-demo@db/codeproof # pragma: allowlist secret - public local demo URL
+      REDIS_URL: redis://redis:6379/0
+    command: ["sh", "-c", "alembic -c backend/alembic.ini upgrade head && python -m app.seed"]
+    depends_on:
+      db: {condition: service_healthy}
+  api:
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    build: {context: ., dockerfile: Dockerfile.backend}
+    environment:
+      <<: *environment
+      BIFROST_URL: ${BIFROST_URL:-}
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["./artifacts:/app/artifacts"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_started}
+  # Trusted orchestration runs on host via make worker, not a container with a Docker socket.
+  # Bind paths must refer to the Docker host. Never mount Docker socket into task containers.
+volumes:
+  database:
+  queue:

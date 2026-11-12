@@ -1,0 +1,24 @@
+{
+  "id": "event-ledger",
+  "title": "Idempotent ledger",
+  "difficulty": "hard",
+  "tags": [
+    "duplicates"
+  ],
+  "description": "Events are [id, amount]. Count only first occurrence of each id, including zero amounts; return total. Negative amounts allowed.",
+  "version": "1.0.0",
+  "environment": "codeproof-python-v1",
+  "editable": [
+    "solution.py"
+  ],
+  "test_command": [
+    "python",
+    "/runner.py"
+  ],
+  "limits": {
+    "memory_mb": 128,
+    "cpus": 0.5,
+    "pids": 32,
+    "seconds": 15
+  }
+}
