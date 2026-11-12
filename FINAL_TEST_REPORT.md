@@ -1,8 +1,8 @@
 # Final test report
 
-Generated: 2026-11-12T18:29:26.157058+00:00
-Base revision: ac60f7ab980f6a79d428a0008a54da2561515892; uncommitted source may be included.
-Tested source-tree SHA256 (excluding this report and ignored runtime output): `bb0879e993b903e137fd7b942d227ce5452f84764c45f0864286d5c95a981348`
+Generated: 2026-11-12T18:40:55.167901+00:00
+Base revision: 81d4cd8d475c0f6e69727f3b6ee98b2d074818a9; uncommitted source may be included.
+Tested source-tree SHA256 (excluding this report and ignored runtime output): `18a1471fdaa99e3292713e6089e37ee3ebdf6811f5f2f119e18a14fa1abffec1`
 
 This is execution evidence, not a completion certificate. BLOCKED required checks make `make verify` fail.
 
@@ -28,25 +28,25 @@ This is execution evidence, not a completion certificate. BLOCKED required check
 
 ### Disposable verification infrastructure: PASS
 
-`docker compose -p codeproof-verify-568d7cfb68 -f docker-compose.verify.yml up -d --wait`
+`docker compose -p codeproof-verify-f7c14a8bff -f docker-compose.verify.yml up -d --wait`
 
 ```text
- Network codeproof-verify-568d7cfb68_default Creating
- Network codeproof-verify-568d7cfb68_default Creating
- Network codeproof-verify-568d7cfb68_default Created
- Network codeproof-verify-568d7cfb68_default Created
- Container codeproof-verify-568d7cfb68-redis-1 Creating
- Container codeproof-verify-568d7cfb68-db-1 Creating
- Container codeproof-verify-568d7cfb68-redis-1 Created
- Container codeproof-verify-568d7cfb68-db-1 Created
- Container codeproof-verify-568d7cfb68-redis-1 Starting
- Container codeproof-verify-568d7cfb68-db-1 Starting
- Container codeproof-verify-568d7cfb68-redis-1 Started
- Container codeproof-verify-568d7cfb68-db-1 Started
- Container codeproof-verify-568d7cfb68-db-1 Waiting
- Container codeproof-verify-568d7cfb68-redis-1 Waiting
- Container codeproof-verify-568d7cfb68-redis-1 Healthy
- Container codeproof-verify-568d7cfb68-db-1 Healthy
+ Network codeproof-verify-f7c14a8bff_default Creating
+ Network codeproof-verify-f7c14a8bff_default Creating
+ Network codeproof-verify-f7c14a8bff_default Created
+ Network codeproof-verify-f7c14a8bff_default Created
+ Container codeproof-verify-f7c14a8bff-redis-1 Creating
+ Container codeproof-verify-f7c14a8bff-db-1 Creating
+ Container codeproof-verify-f7c14a8bff-redis-1 Created
+ Container codeproof-verify-f7c14a8bff-db-1 Created
+ Container codeproof-verify-f7c14a8bff-redis-1 Starting
+ Container codeproof-verify-f7c14a8bff-db-1 Starting
+ Container codeproof-verify-f7c14a8bff-db-1 Started
+ Container codeproof-verify-f7c14a8bff-redis-1 Started
+ Container codeproof-verify-f7c14a8bff-db-1 Waiting
+ Container codeproof-verify-f7c14a8bff-redis-1 Waiting
+ Container codeproof-verify-f7c14a8bff-db-1 Healthy
+ Container codeproof-verify-f7c14a8bff-redis-1 Healthy
 
 ```
 
@@ -61,33 +61,36 @@ This is execution evidence, not a completion certificate. BLOCKED required check
 #1 transferring dockerfile: 195B done
 #1 DONE 0.0s
 
-#2 [internal] load metadata for docker.io/library/python:3.12.8-slim
-#2 DONE 1.0s
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
 
-#3 [internal] load .dockerignore
-#3 transferring context: 165B done
-#3 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/python:3.12.8-slim
+#3 DONE 1.4s
 
-#4 [internal] load build context
-#4 transferring context: 2.05kB done
+#4 [internal] load .dockerignore
+#4 transferring context: 165B done
 #4 DONE 0.0s
 
-#5 [1/2] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
-#5 resolve docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0 done
-#5 CACHED
+#5 [internal] load build context
+#5 transferring context: 2.05kB done
+#5 DONE 0.0s
 
-#6 [2/2] COPY scripts/container_runner.py /runner.py
+#6 [1/2] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#6 resolve docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0 done
 #6 DONE 0.0s
 
-#7 exporting to image
-#7 exporting layers 0.0s done
-#7 exporting manifest sha256:076ccd70f2d9dfd1f6acbb45ddd1a2ddddbb91bd30a0838504dde95d6d62fd71 done
-#7 exporting config sha256:7277c88f005dab79e122dd50a84cf45fb4e4aa837f771dbb36c1090b6b939374 done
-#7 exporting attestation manifest sha256:2ab9a0bee1cf96304c3f486f7eaad497ba375136addfe4a21e3b266592f1c7de done
-#7 exporting manifest list sha256:e6075a6dbf0656bc96dc0e7ca5ddbcebb20f4692504e0369cd4ae0e270da03cc done
-#7 naming to docker.io/library/codeproof-task:1 done
-#7 unpacking to docker.io/library/codeproof-task:1 done
-#7 DONE 0.0s
+#7 [2/2] COPY scripts/container_runner.py /runner.py
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:076ccd70f2d9dfd1f6acbb45ddd1a2ddddbb91bd30a0838504dde95d6d62fd71 done
+#8 exporting config sha256:7277c88f005dab79e122dd50a84cf45fb4e4aa837f771dbb36c1090b6b939374 done
+#8 exporting attestation manifest sha256:08ef6d84f795a07e03aaff1689f64bb76b100c6467483039caeda11428692b3c done
+#8 exporting manifest list sha256:8c50ef9215009b097abb2abb0e4262b83cd0e7eda605805cff966b348ff1019e done
+#8 naming to docker.io/library/codeproof-task:1 done
+#8 unpacking to docker.io/library/codeproof-task:1 done
+#8 DONE 0.0s
 
 ```
 
@@ -167,8 +170,8 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.41 kB │ gzip:   0.29 kB
 dist/assets/index-N6xGoqQn.css   18.39 kB │ gzip:   5.00 kB
-dist/assets/index-95ze4b0L.js   631.97 kB │ gzip: 180.51 kB
-✓ built in 1.59s
+dist/assets/index-BUmievwo.js   632.24 kB │ gzip: 180.58 kB
+✓ built in 1.62s
 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
@@ -182,7 +185,7 @@ dist/assets/index-95ze4b0L.js   631.97 kB │ gzip: 180.51 kB
 `.venv/bin/bandit -r backend/app scripts -ll`
 
 ```text
-Run started:2026-11-12 18:28:27.409374+00:00
+Run started:2026-11-12 18:39:46.593364+00:00
 
 Test results:
 	No issues identified.
@@ -253,19 +256,19 @@ Running 1 test using 1 worker
 
   ✓  1 e2e/app.spec.ts:2:1 › exploration: tasks, configuration, keyboard and narrow viewport (1.1s)
 
-  1 passed (3.3s)
-(node:6677) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+  1 passed (3.5s)
+(node:11374) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-[2m[WebServer] [22mINFO:     Started server process [6680]
+[2m[WebServer] [22mINFO:     Started server process [11377]
 [2m[WebServer] [22mINFO:     Waiting for application startup.
 [2m[WebServer] [22mINFO:     Application startup complete.
 [2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-[2m[WebServer] [22m(node:6706) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(node:11403) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
-(node:6708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:11409) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:6708) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(node:6708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:11409) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:11409) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 ```
@@ -282,7 +285,7 @@ Running 1 test using 1 worker
     from starlette.testclient import TestClient as TestClient  # noqa
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-4 passed, 29 deselected, 1 warning in 34.86s
+4 passed, 29 deselected, 1 warning in 34.92s
 
 ```
 
@@ -298,22 +301,22 @@ Running 1 test using 1 worker
 
 Running 2 tests using 1 worker
 
-  ✓  1 e2e/app.spec.ts:45:1 › real evaluator: benchmark, refresh, patch, compare, export (4.0s)
-  ✓  2 e2e/app.spec.ts:89:1 › real evaluator: budget exhaustion and cancellation are persistent (2.0s)
+  ✓  1 e2e/app.spec.ts:45:1 › real evaluator: benchmark, refresh, patch, compare, export (6.3s)
+  ✓  2 e2e/app.spec.ts:90:1 › real evaluator: budget exhaustion and cancellation are persistent (2.0s)
 
-  2 passed (8.1s)
-(node:6920) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+  2 passed (10.6s)
+(node:11614) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-[2m[WebServer] [22mINFO:     Started server process [6923]
+[2m[WebServer] [22mINFO:     Started server process [11617]
 [2m[WebServer] [22mINFO:     Waiting for application startup.
 [2m[WebServer] [22mINFO:     Application startup complete.
 [2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-[2m[WebServer] [22m(node:6947) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(node:11648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
-(node:6955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:11656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:6955) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(node:6955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:11656) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:11656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 ```
@@ -331,19 +334,3 @@ GitHub upload/CI status is separate from these local checks. No public deploymen
 ## Reproduce
 
 `make setup && make verify` on a Docker-equipped machine. Logs are local-only under `.local/verification/`. No user database is reset by verification.
-
-## Full-stack launcher smoke check
-
-Observed at 2026-11-12T18:31:46.420687+00:00. Command: `/Library/Developer/CommandLineTools/usr/bin/make start` (macOS Command Line Tools Make, avoiding unrelated Xcode license configuration). PostgreSQL, Redis, API, worker and frontend reached readiness.
-
-Deterministic Demo Replay run `6735f70c60eb4e7cb522fd725f67e457` executed on the Compose stack; these are scripted outcomes, not live model measurements. JSON export returned HTTP 200.
-
-| Strategy | Status | Strict success | Hidden passed / total |
-|---|---|---|---|
-| DirectPatch | Completed | True | 2 / 2 |
-| IterativeFix | Completed | False | 1 / 2 |
-| PlanVerify | Completed | True | 2 / 2 |
-
-## CI portability finding
-
-The initial GitHub Actions setup failed because `ubuntu-latest` selected Ubuntu 26.04, unsupported by the locked Playwright release. The workflow now pins supported Ubuntu 24.04. Application verification was not weakened; the corrected hosted run is checked separately.
