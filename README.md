@@ -2,7 +2,7 @@
 
 Evidence-based benchmarking for coding and bug-fixing **agents**, including their edits, test calls, budgets and stopping behavior. Built for researchers and teams comparing maintenance workflows.
 
-**Status:** local MVP under verification. See `FINAL_TEST_REPORT.md` for actual checks and `IMPLEMENTATION_CHECKLIST.md` for remaining work. Demo Replay is deterministic scripted behavior, never model-performance evidence. No cloud deployment is included.
+**Status:** local MVP verified with deterministic Docker evaluation. Live Bifrost integration remains unverified without credentials and a spending limit. See `FINAL_TEST_REPORT.md` for actual checks and `IMPLEMENTATION_CHECKLIST.md` for remaining work. Demo Replay is deterministic scripted behavior, never model-performance evidence. No cloud deployment is included.
 
 ## Quick start
 
