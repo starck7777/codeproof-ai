@@ -29,6 +29,7 @@ test('real evaluator: benchmark, refresh, patch, compare, export',async({page})=
  await page.waitForTimeout(250);
  await page.context().setOffline(false);
  await expect(page.getByText('Completed' ,{exact:true}).first()).toBeVisible({timeout:150000});
+ await expect(page.getByLabel('Event stream connection')).toHaveText('Completed');
  await page.getByRole('button').filter({hasText:'DirectPatch Agent'}).first().click();
  await expect(page.getByRole('heading',{name:'Final patch'})).toBeVisible();
  await expect(page.getByText('range(start, end + 1)',{exact:false})).toBeVisible();

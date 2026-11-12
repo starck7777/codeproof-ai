@@ -150,10 +150,23 @@ function App() {
     source.addEventListener("snapshot", (event) => {
       const value = JSON.parse((event as MessageEvent).data) as Run;
       setSelected(value);
+      setAttempt((prev) =>
+        prev ? value.attempts.find((a) => a.id === prev.id) || prev : null,
+      );
       setRuns((prev) => [value, ...prev.filter((r) => r.id !== id)]);
-      setConnection("Connected");
+      if (
+        value.attempts.every((a) =>
+          ["Completed", "Failed", "Timed Out", "Cancelled"].includes(a.status),
+        )
+      ) {
+        source.close();
+        setConnection("Completed");
+      } else setConnection("Connected");
     });
-    source.onerror = () => setConnection("Reconnecting…");
+    source.onerror = () => {
+      if (source.readyState !== EventSource.CLOSED)
+        setConnection("Reconnecting…");
+    };
     source.onopen = () => setConnection("Connected");
     return () => source.close();
   }, [page, selectedId]);
@@ -871,7 +884,9 @@ function App() {
                         ? "Demo Replay — not live model results"
                         : "Live Benchmark"}
                     </span>
-                    <span>{connection}</span>
+                    <span role="status" aria-label="Event stream connection">
+                      {connection}
+                    </span>
                     <button
                       className="secondary"
                       onClick={async () => {
